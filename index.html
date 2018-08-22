@@ -14,8 +14,14 @@
     <div class="container">
       <h1 class = "jumbotron">Pig Dice</h1>
       <div class="row">
+        <div id = "rollArea">
+          <h2 class="turnHeader"><span id="turnName"></span>, it's your turn</span></h2>
+          <h4>Your roll:  <span id = "diceRoll"></span></h4>
+          <h4>Turn Score:  <span id="turnScore"></span></h4>
+        </div>
+
         <div class = "col-sm-6">
-          <div class="Player1">
+          <div class="player1">
             <form id="p1form">
               <label for="p1name">Enter Your Name:  </label>
               <input id="p1name" type="text">
@@ -24,17 +30,11 @@
             <h2 id=p1header></h2>
             <div id="scoreArea">
               <h4>Total Score:  <span id="totalScore"></span></h4>
-              <h4>Turn Score:  <span id="turnScore"></span></h4>
             </div>
-            <div id = "rollArea">
-              <h4>Your roll:  <span id = "diceRoll"></span></h4>
-            </div>
-            <button id="roll1" class="btn btn-danger">Roll!</button>
-            <button id="hold1" class="btn btn-primary">Hold!</button>
           </div>
         </div>
         <div class = "col-sm-6">
-          <div class="Player2">
+          <div class="player2">
             <form id="p2form">
               <label for="p2name">Enter Your Name:  </label>
               <input id="p2name" type="text">
@@ -43,15 +43,13 @@
             <h2 id=p2header></h2>
             <div id="scoreArea">
               <h4>Total Score:  <span id="totalScore"></span></h4>
-              <h4>Turn Score:  <span id="turnScore"></span></h4>
             </div>
-            <div id = "rollArea">
-              <h4>Your roll:  <span id = "diceRoll"></span></h4>
-            </div>
-            <button id="roll2" class="btn btn-danger">Roll!</button>
-            <button id="hold2" class="btn btn-primary">Hold!</button>
           </div>
         </div>
+      </div>
+      <div id="buttons">
+        <button id="roll" class="btn btn-danger">Roll!</button>
+        <button id="hold" class="btn btn-primary">Hold!</button>
       </div>
     </div>
   </body>

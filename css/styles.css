@@ -1,0 +1,13 @@
+.turnHeader {
+  display: none;
+}
+
+div#buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+div#rollArea {
+  margin-top: 20px;
+  text-align: center;
+}

@@ -3,15 +3,16 @@ var turnScore = 0;
 var player1 = {};
 var player2 = {};
 
-
-function Player(name) {
+function Player(name, turnValue) {
   this.name = name;
   this.score = 0;
+  this.turn = turnValue;
 }
 
 Player.prototype.hold = function() {
   this.score += turnScore
   turnScore = 0
+  player1.turn = !player1.turn;
   return this.score
 }
 
@@ -21,11 +22,19 @@ Player.prototype.win = function() {
   }
 }
 
+function turnChecker() {
+  if (player1.turn === true) {
+    return player1.name
+  } else {
+    return player2.name
+  }
+}
+
 
 function scoreTally(roll) {
   if (roll === 1) {
     turnScore = 0;
-    alert("Your turn is over!")
+    player1.turn = !player1.turn;
   } else {
     turnScore += roll;
   }
@@ -35,18 +44,17 @@ function scoreTally(roll) {
 
 $(document).ready(function(){
 
-  var currentTurnScore1 = 0;
-  var currentTotalScore1 = 0
-  var currentTurnScore2 = 0;
-  var currentTotalScore2 = 0;
+  var currentTurnScore = 0;
+  var currentTotalScore = 0
 
 //Player Constructors
   $("#p1form").submit(function(event) {
     event.preventDefault();
     var player1Name = $("#p1name").val();
-    console.log(player1Name);
-    player1 = new Player(player1Name);
+    player1 = new Player(player1Name, true);
     $("#p1form").hide();
+    $(".turnHeader").show();
+    $("#turnName").text(player1.name);
     $("#p1header").text(player1Name);
   });
 
@@ -54,56 +62,41 @@ $(document).ready(function(){
   $("#p2form").submit(function(event) {
     event.preventDefault();
     var player2Name = $("#p2name").val();
-    console.log(player2Name);
-    player2 = new Player(player2Name);
+    player2 = new Player(player2Name, false);
+    console.log(player2);
     $("#p2form").hide();
     $("#p2header").text(player2Name);
   });
 
 //Roll Buttons
-  $("#roll1").click(function(event){
+  $("#roll").click(function(event){
     event.preventDefault();
-
     var thisRoll = Math.floor((Math.random() * 6) + 1);
-    $(".Player1 * #diceRoll").text(thisRoll);
-
-    var currentTurnScore1 = scoreTally(thisRoll);
-    $(".Player1 * #turnScore").text(currentTurnScore1);
+    $("#diceRoll").text(thisRoll);
+    var currentTurnScore = scoreTally(thisRoll);
+    $("#turnScore").text(currentTurnScore);
+    var playersTurn = turnChecker();
+    $("#turnName").text(playersTurn);
   });
 
-  $("#roll2").click(function(event){
-    event.preventDefault();
-
-    var thisRoll = Math.floor((Math.random() * 6) + 1);
-    $(".Player2 * #diceRoll").text(thisRoll);
-
-    var currentTurnScore2 = scoreTally(thisRoll);
-    $(".Player2 * #turnScore").text(currentTurnScore2);
-  });
 
 
 //Hold Buttons
-  $("#hold1").click(function(event){
+  $("#hold").click(function(event){
     event.preventDefault();
     console.log(player1);
-    var currentTotalScore = player1.hold();
-
-    $(".Player1 * #totalScore").text(currentTotalScore);
-    $(".Player1 * #turnScore").text(currentTurnScore1);
-
-    player1.win();
+    if (player1.turn === true) {
+      var p1Score = player1.hold();
+      $(".player1 * #totalScore").text(p1Score);
+      player1.win();
+    } else {
+      var p2Score = player2.hold();
+      $(".player2 * #totalScore").text(p2Score);
+      player2.win();
+    }
+    var playersTurn = turnChecker();
+    $("#turnName").text(playersTurn);
   });
 
-  $("#hold2").click(function(event){
-    event.preventDefault();
-    console.log(player2);
-
-    var currentTotalScore = player2.hold();
-
-    $(".Player2 * #totalScore").text(currentTotalScore);
-    $(".Player2 * #turnScore").text(currentTurnScore2);
-
-    player2.win();
-  });
 
 });
