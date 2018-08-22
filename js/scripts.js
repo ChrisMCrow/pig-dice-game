@@ -24,8 +24,12 @@ Player.prototype.win = function() {
 
 function turnChecker() {
   if (player1.turn === true) {
+    $("div.player1").addClass("playersTurn");
+    $("div.player2").removeClass("playersTurn");
     return player1.name
   } else {
+    $("div.player2").addClass("playersTurn");
+    $("div.player1").removeClass("playersTurn");
     return player2.name
   }
 }
@@ -34,6 +38,7 @@ function turnChecker() {
 function scoreTally(roll) {
   if (roll === 1) {
     turnScore = 0;
+    $("#turnScore").text("0");
     player1.turn = !player1.turn;
   } else {
     turnScore += roll;
@@ -58,7 +63,6 @@ $(document).ready(function(){
     $("#p1header").text(player1Name);
   });
 
-
   $("#p2form").submit(function(event) {
     event.preventDefault();
     var player2Name = $("#p2name").val();
@@ -72,11 +76,11 @@ $(document).ready(function(){
   $("#roll").click(function(event){
     event.preventDefault();
     var thisRoll = Math.floor((Math.random() * 6) + 1);
-    $("#diceRoll").text(thisRoll);
+    $("#diceRoll").empty();
+    $("#diceRoll").append("<img src='img/dice" + thisRoll + ".svg' height=100px>");
     var currentTurnScore = scoreTally(thisRoll);
     $("#turnScore").text(currentTurnScore);
-    var playersTurn = turnChecker();
-    $("#turnName").text(playersTurn);
+    $("#turnName").text(turnChecker());
   });
 
 
@@ -94,8 +98,7 @@ $(document).ready(function(){
       $(".player2 * #totalScore").text(p2Score);
       player2.win();
     }
-    var playersTurn = turnChecker();
-    $("#turnName").text(playersTurn);
+    $("#turnName").text(turnChecker());
   });
 
 
