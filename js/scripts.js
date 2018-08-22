@@ -20,6 +20,12 @@ function hold() {
   return totalScore
  }
 
+ function CheckForWin(){
+ if (totalScore >= 100) {
+   alert("YOU WIN!!!")
+ }
+}
+
 $(document).ready(function(){
   var currentTurnScore = 0;
   $("#Player1 button#roll").click(function(event){
@@ -40,6 +46,6 @@ $(document).ready(function(){
 
     $("#totalScore").text(currentTotalScore);
     $("span#turnScore").text(currentTurnScore);
-
+    CheckForWin();
   })
 })
