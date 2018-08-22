@@ -1,3 +1,17 @@
+.jumbotron {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 75px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  box-shadow: 3px 3px 3px gray;
+}
+
+h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 50px;
+}
+
 .turnHeader {
   display: none;
 }
@@ -29,7 +43,7 @@ div#rollArea {
   padding: 15px 25px;
   border-radius: 15px;
   outline: none;
-  margin: 0 20px; 
+  margin: 0 20px;
 }
 
 #buttons .btn:active {

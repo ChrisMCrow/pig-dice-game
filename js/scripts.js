@@ -58,6 +58,7 @@ $(document).ready(function(){
     var player1Name = $("#p1name").val();
     player1 = new Player(player1Name, true);
     $("#p1form").hide();
+    $(".startGame").hide();
     $(".turnHeader").show();
     $("#turnName").text(player1.name);
     $("#p1header").text(player1Name);
