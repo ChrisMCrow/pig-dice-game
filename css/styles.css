@@ -1,9 +1,15 @@
-.jumbotron {
+.container {
+  position: relative;
+}
+
+.header {
   font-family: 'Kaushan Script', cursive;
-  font-size: 75px;
+  color: white;
+  font-size: 8vh;
+  padding: 3vh;
   text-align: center;
   background-color: black;
-  color: white;
+  border-radius: 20px;
   box-shadow: 3px 3px 3px gray;
 }
 
@@ -31,11 +37,10 @@ div#rollArea {
 }
 
 .playersTurn {
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 3px 3px 3px gray;
   background-color: #5cb85c;
 }
-
 
 #buttons .btn {
   box-shadow: 0 9px #999;
@@ -49,5 +54,28 @@ div#rollArea {
 #buttons .btn:active {
   box-shadow: 0 5px #666;
   transform: translateY(10px);
+}
 
+.results {
+  display: none;
+  font-family: 'Kaushan Script', cursive;
+  color: red;
+  font-size: 100px;
+  text-shadow: 5px 5px 5px black;
+
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.results p {
+  font-family: arial;
+  text-align: center;
+  font-size: 50px;
+}
+
+.results:hover {
+  cursor: pointer;
 }

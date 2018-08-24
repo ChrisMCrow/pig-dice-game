@@ -17,8 +17,10 @@ Player.prototype.hold = function() {
 }
 
 Player.prototype.win = function() {
-  if (this.score >= 100) {
-    alert(this.name + " wins!")
+  if (this.score >= 20) {
+    $(".results").prepend(this.name + " WINS!")
+    $(".results").fadeIn();
+    return true
   }
 }
 
@@ -27,10 +29,12 @@ function turnChecker() {
     $("div.player1").addClass("playersTurn");
     $("div.player2").removeClass("playersTurn");
     return player1.name
-  } else {
+  } else if (player1.turn === false && player2.name) {
     $("div.player2").addClass("playersTurn");
     $("div.player1").removeClass("playersTurn");
     return player2.name
+  } else {
+    return alert("Please press start")
   }
 }
 
@@ -56,6 +60,7 @@ $(document).ready(function(){
   $("#p1form").submit(function(event) {
     event.preventDefault();
     var player1Name = $("#p1name").val();
+    if (!player1Name) {player1Name = "Player 1"}
     player1 = new Player(player1Name, true);
     $("#p1form").hide();
     $(".startGame").hide();
@@ -67,6 +72,7 @@ $(document).ready(function(){
   $("#p2form").submit(function(event) {
     event.preventDefault();
     var player2Name = $("#p2name").val();
+    if (!player2Name) {player2Name = "Player 2"}
     player2 = new Player(player2Name, false);
     console.log(player2);
     $("#p2form").hide();
@@ -87,20 +93,26 @@ $(document).ready(function(){
 
 
 //Hold Buttons
-  $("#hold").click(function(event){
+  $("#hold").click(function(event) {
     event.preventDefault();
     console.log(player1);
     if (player1.turn === true) {
       var p1Score = player1.hold();
       $(".player1 * #totalScore").text(p1Score);
+      $("#turnScore").text("0");
       player1.win();
     } else {
       var p2Score = player2.hold();
       $(".player2 * #totalScore").text(p2Score);
+      $("#turnScore").text("0");
       player2.win();
     }
     $("#turnName").text(turnChecker());
   });
+
+  $(".results").click(function() {
+    document.location.reload();
+  })
 
 
 });

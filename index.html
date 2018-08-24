@@ -13,7 +13,7 @@
 </head>
   <body>
     <div class="container">
-      <h1 class = "jumbotron">Pig Dice</h1>
+      <h1 class = "header">Pig Dice</h1>
       <div class="row">
         <div id = "rollArea">
           <h2 class="turnHeader"><span id="turnName"></span>, it's your turn</span></h2>
@@ -30,7 +30,7 @@
             <form id="p1form">
               <label for="p1name">Enter Your Name:  </label>
               <input id="p1name" type="text">
-              <button type="submit" class="btn btn-success">1</button>
+              <button type="submit" class="btn btn-success">Start</button>
             </form>
             <h1 id=p1header></h1>
             <div id="scoreArea">
@@ -43,7 +43,7 @@
             <form id="p2form">
               <label for="p2name">Enter Your Name:  </label>
               <input id="p2name" type="text">
-              <button type="submit" class="btn btn-success">2</button>
+              <button type="submit" class="btn btn-success">Start</button>
             </form>
             <h1 id=p2header></h1>
             <div id="scoreArea">
@@ -55,6 +55,9 @@
       <div id="buttons">
         <button id="roll" class="btn btn-danger">Roll!</button>
         <button id="hold" class="btn btn-primary">Hold!</button>
+      </div>
+      <div class="results">
+        <p>click to play again</p>
       </div>
     </div>
   </body>
